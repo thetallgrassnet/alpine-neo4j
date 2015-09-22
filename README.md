@@ -1,5 +1,8 @@
 ## Container for Neo4j 2.2 Community Edition
 
+Based on the [official Neo4j Docker image](https://github.com/neo4j-contrib/docker-neo4j), built on [Alpine](https://www.alpinelinux.org/)
+to minimize image size.
+
 **Note: this is just _work in progress_ Beta state, not suited for production/serious use**
 
 Neo4j is an highly scalable, robust (fully ACID) native graph database.
@@ -14,8 +17,8 @@ This Dockerfile creates a container for Neo4j 2.2.5 community edition that is re
 1. Build & Run:
 
 ```
-git clone https://github.com/neo4j-contrib/docker-neo4j
-cd docker-neo4j
+git clone https://github.com/thetallgrassnet/alpine-neo4j
+cd alpine-neo4j
 docker build .
 
 # note the resulting image-id

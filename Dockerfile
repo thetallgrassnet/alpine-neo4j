@@ -1,20 +1,19 @@
-# Neo4j Server
-# Repository http://github.com/neo4j-contrib/docker-neo4j
-FROM java:openjdk-8-jre
+# Neo4j Server on Alpine
+# Repository http://github.com/thetallgrassnet/alpine-neo4j
+FROM thetallgrassnet/alpine-java
 
-MAINTAINER Michael Hunger <michael.hunger@neotechnology.com>
+MAINTAINER Jesse B. Hannah <jesse@jbhannah.net>
 
 ENV PATH $PATH:/var/lib/neo4j/bin
 
 ENV NEO4J_VERSION 2.2.5
 ENV NEO4J_DOWNLOAD_SHA256 7fadc119f465a3d6adceb610401363fb158a5ed25081f9893d4f56ac4989a998
 
-RUN apt-get update \
-    && apt-get install -y curl \
+RUN apk add --update bash curl \
     && curl -fSL -o neo4j-community.tar.gz http://dist.neo4j.org/neo4j-community-$NEO4J_VERSION-unix.tar.gz \
-    && apt-get purge -y --auto-remove curl && rm -rf /var/lib/apt/lists/* \
+    && apk del --rdepends curl && rm -rf /var/cache/apk/* \
     && sha256sum neo4j-community.tar.gz \
-    && echo "$NEO4J_DOWNLOAD_SHA256 neo4j-community.tar.gz" | sha256sum -c - \
+    && echo "$NEO4J_DOWNLOAD_SHA256  neo4j-community.tar.gz" | sha256sum -c - \
     && tar xzf neo4j-community.tar.gz -C /var/lib \
     && mv /var/lib/neo4j-* /var/lib/neo4j \
     && ln -s /var/lib/neo4j/data /data \
