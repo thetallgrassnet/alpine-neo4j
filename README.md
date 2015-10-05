@@ -1,6 +1,6 @@
 ## Docker image for Neo4j Community Edition
 
-Based on the [official Neo4j Docker image](https://github.com/neo4j-contrib/docker-neo4j), built on [Alpine](https://www.alpinelinux.org/)
+Based on the [official Neo4j Docker image](https://github.com/neo4j/docker-neo4j), built on [Alpine](https://www.alpinelinux.org/)
 to minimize image size.
 
 **Note: this image is a _work in progress_ beta, and is not suited for production use**
