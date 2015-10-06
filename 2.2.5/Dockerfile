@@ -7,10 +7,13 @@ ENV NEO4J_TARBALL neo4j-community-$NEO4J_VERSION-unix.tar.gz
 
 
 
-RUN apk add --update bash curl \
-    && curl --fail --silent --show-error --location --output $NEO4J_TARBALL $NEO4J_DOWNLOAD_ROOT/$NEO4J_TARBALL \
-    && apk del --rdepends curl \
-    && rm -rf /var/cache/apk/* \
+RUN apk add --quiet --update bash curl \
+    && curl --fail --silent --show-error --location --output lsof.apk http://dl-3.alpinelinux.org/alpine/v3.0/main/x86_64/lsof-4.87-r0.apk \
+    && apk add --quiet --allow-untrusted lsof.apk \
+    && rm lsof.apk \
+    && rm -rf /var/cache/apk/*
+
+RUN curl --fail --silent --show-error --location --output $NEO4J_TARBALL $NEO4J_DOWNLOAD_ROOT/$NEO4J_TARBALL \
     && echo "$NEO4J_DOWNLOAD_SHA256  $NEO4J_TARBALL" | sha256sum -c -s - \
     && tar -xzf $NEO4J_TARBALL -C /var/lib \
     && mv /var/lib/neo4j-* /var/lib/neo4j \
