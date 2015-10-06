@@ -1,4 +1,4 @@
-FROM thetallgrassnet/alpine-java
+FROM thetallgrassnet/alpine-java:8
 
 ENV NEO4J_VERSION 2.2.2
 ENV NEO4J_DOWNLOAD_SHA256 18d6d88c61d9077340adf774359bd1d8f458f68ec51bcf96deb3f00894db1ded
