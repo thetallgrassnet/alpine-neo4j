@@ -17,18 +17,12 @@ access to the Neo4j API and a volume (`/data`) to allow the database
 to be persisted outside its container.
 
 ```
-<<<<<<< ours
-git clone https://github.com/thetallgrassnet/alpine-neo4j
-cd alpine-neo4j
-docker build .
-=======
 docker run \
     --detach \
     --publish=7474:7474 \
     --volume=$HOME/neo4j-data:/data \
-    neo4j/neo4j
+    thetallgrassnet/alpine-neo4j
 ```
->>>>>>> theirs
 
 Point your browser at `http://localhost:7474`.
 
@@ -56,7 +50,7 @@ docker run \
     --publish=7474:7474 \
     --volume=$HOME/neo4j-data:/data \
     --env=NEO4J_CACHE_MEMORY=4G \
-    neo4j/neo4j
+    thetallgrassnet/alpine-neo4j
 ```
 
 The following environment variables are available:
@@ -80,7 +74,7 @@ docker run \
     --publish=7474:7474 \
     --volume=$HOME/neo4j-data:/data \
     --volume=$HOME/neo4j-conf:/conf \
-    neo4j/neo4j
+    thetallgrassnet/alpine-neo4j
 ```
 
 The `/conf` volume will override all configuration provided by the
@@ -93,5 +87,5 @@ For more complex customization of the image you can create a new image
 based on this one.
 
 ```
-FROM neo4j/neoj4
+FROM thetallgrassnet/alpine-neo4j
 ```
