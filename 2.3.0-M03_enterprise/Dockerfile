@@ -2,7 +2,7 @@ FROM thetallgrassnet/alpine-java:8
 
 ENV NEO4J_VERSION 2.3.0-M03
 ENV NEO4J_EDITION enterprise
-ENV NEO4J_DOWNLOAD_SHA256 
+ENV NEO4J_DOWNLOAD_SHA256 eaabc51cfbfb78f02a0d404a38e79a5dff903e9fed18b7fa0fbfbfc4a9a138bb
 ENV NEO4J_DOWNLOAD_ROOT http://dist.neo4j.org
 ENV NEO4J_TARBALL neo4j-$NEO4J_EDITION-$NEO4J_VERSION-unix.tar.gz
 ENV NEO4J_URI $NEO4J_DOWNLOAD_ROOT/$NEO4J_TARBALL
@@ -28,8 +28,9 @@ RUN mv data /data \
 
 VOLUME /data
 
-COPY neo4j.sh /neo4j.sh
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 EXPOSE 7474 7473
 
-CMD ["/neo4j.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["neo4j"]
