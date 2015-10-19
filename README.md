@@ -2,8 +2,6 @@
 
 Based on the [official Neo4j Docker image](https://github.com/neo4j/docker-neo4j), built on [Alpine](https://www.alpinelinux.org/) to minimize image size.
 
-**Note: this image is a _work in progress_ beta, and is not suited for production use**
-
 Neo4j is a highly scalable, robust, native graph database. It is used in mission-critical apps by thousands of leading startups, enterprises, and governments around the world. You can learn more [here](http://neo4j.com/developer).
 
 # How to use this image
