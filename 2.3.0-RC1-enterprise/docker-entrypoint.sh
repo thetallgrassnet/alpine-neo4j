@@ -5,14 +5,14 @@ setting() {
     value="${2}"
     file="${3}"
     if [ -n "${value}" ]; then
-        sed --in-place "s|.*${setting}=.*|${setting}=${value}|" conf/"${file}"
+        sed -i "s|.*${setting}=.*|${setting}=${value}|" conf/"${file}"
     fi
 }
 
 if [ "$1" == "neo4j" ]; then
     if [ -d /conf ]; then
-        rm --recursive --force conf
-        ln --symbolic /conf
+        rm -rf conf
+        ln -s /conf
     else
         setting "keep_logical_logs" "${NEO4J_KEEP_LOGICAL_LOGS:-100M size}" neo4j.properties
         setting "dbms.pagecache.memory" "${NEO4J_CACHE_MEMORY:-512M}" neo4j.properties
@@ -48,14 +48,14 @@ if [ "$1" == "neo4j" ]; then
     fi
 
     if [ -d /plugins ]; then
-        rm --recursive --force plugins
-        ln --symbolic /plugins
+        rm -rf plugins
+        ln -s /plugins
     fi
 
     exec bin/neo4j console
 elif [ "$1" == "dump-config" ]; then
     if [ -d /conf ]; then
-        cp --recursive conf/* /conf
+        cp -r conf/* /conf
     else
         echo "You must provide a /conf volume"
         exit 1
